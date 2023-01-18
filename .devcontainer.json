@@ -1,0 +1,7 @@
+{
+    "image": "test:latest",
+    "runArgs": [
+        "--gpus",
+        "all"
+    ]
+}
