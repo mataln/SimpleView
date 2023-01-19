@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:11.1.1-cudnn8-devel-ubuntu18.04
 
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
@@ -16,8 +16,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     libbz2-dev \
     libjpeg-dev \
-    musl-dev \
-    liblzma-dev
+    musl-dev
 
 RUN wget https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz && \
     tar -xf Python-3.7.5.tgz && \
