@@ -134,7 +134,7 @@ IMG_MEAN, IMG_VAR = get_mv_mean_var(
     (
         ('dataset', "modelnet" if "modelnet" in FLAGS.train_file else "object"),
         ('views', VIEWS),
-        ('resolution', RESOLUTION),
+        ('resolution', 128), #Changed from RESOLUTION to 128
         ('trans', TRANS),
         ('size', SIZE),
         ('normalize', NORM_IMG),
@@ -153,8 +153,9 @@ MODEL = importlib.import_module(FLAGS.model)  # import network module
 MODEL_FILE = os.path.join(ROOT_DIR, 'models', FLAGS.model + '.py')
 LOG_DIR = FLAGS.log_dir
 
+print(f"LOG DIR: {LOG_DIR}")
 if not os.path.exists(LOG_DIR):
-    os.mkdir(LOG_DIR)
+    os.makedirs(LOG_DIR, exist_ok=True)
 
 os.system('cp %s %s' % (MODEL_FILE, LOG_DIR))  # bkp of model def
 os.system('cp train.py %s' % (LOG_DIR))  # bkp of train procedure
@@ -600,11 +601,12 @@ def eval_one_epoch(sess, ops, test_writer, test_data=True):
     """ ops: dict mapping from string to tf ops """
 
     if test_data:
+        print("Evaluating on test data")
         current_data, current_label = data_utils.get_current_data_h5(
             TEST_DATA, TEST_LABELS, NUM_POINT
         )
     else:
-        print("WARNING: Evaluating on train data")
+        print("**WARNING**: EVALUATING ON TRAIN DATA")
         current_data, current_label = data_utils.get_current_data_h5(
             TRAIN_DATA, TRAIN_LABELS, NUM_POINT
         )

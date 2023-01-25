@@ -1,0 +1,7 @@
+{
+    "image": "simpleview-sonn-tf:latest",
+    "runArgs": [
+        "--gpus",
+        "all"
+    ]
+}

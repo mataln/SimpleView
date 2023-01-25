@@ -1,0 +1,12 @@
++ run=2
++ python train.py --resolution 256 --num_point 8192 --views 6 --weight_decay 0 --batch_size 60 --aug --sigma 0.01 --clip 0.05 --ratio 0.35 --learning_rate 0.001 --decay_rate 0.7 --size 1 --learning_rate_clip 0 --num_class 33 --kernel_size 3 --conv_stride 1 --first_pool_size 0 --first_pool_stride 0 --max_epoch 300 --record_file records/tree_run_2.csv --log_dir log/tree_run_2 --train_file ../data/h5_files/trees/0_0.2_TRAIN_SPLIT_train_publish_16384.h5 --test_file ../data/h5_files/trees/0_0.2_TEST_SPLIT_train_publish_16384.h5
+2023-01-25 10:29:25.710813: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+WARNING:tensorflow:Deprecation warnings have been disabled. Set TF_ENABLE_DEPRECATION_WARNINGS=1 to re-enable them.
+/usr/local/lib/python3.8/dist-packages/requests/__init__.py:89: RequestsDependencyWarning: urllib3 (1.26.2) or chardet (3.0.4) doesn't match a supported version!
+  warnings.warn("urllib3 ({}) or chardet ({}) doesn't match a supported "
+Traceback (most recent call last):
+  File "train.py", line 133, in <module>
+    IMG_MEAN, IMG_VAR = get_mv_mean_var(
+  File "/workspaces/SimpleView/ScanObjectNN/SimpleView/utils/utils.py", line 92, in get_mv_mean_var
+    mean_var_list = data[param_tuple]
+KeyError: (('dataset', 'object'), ('views', 6), ('resolution', 256), ('trans', -1.4), ('size', 1), ('normalize', False), ('norm_pc', True))
